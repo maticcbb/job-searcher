@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,11 +20,16 @@ public class Job {
     private Long id;
     private String title;
     private String location;
+    @Column(nullable = false, length = 4096)
     private String snippet;
     private String salary;
+    private String source;
     private String type;
+    @Column(nullable = false, length = 4096)
     private String link;
-    private String updatedDate;
+    private String company;
+    private String updated;
 
-
+    public Job() {
+    }
 }
