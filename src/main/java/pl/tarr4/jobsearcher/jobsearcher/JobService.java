@@ -25,24 +25,27 @@ public class JobService {
        return jobRepository.findAll();
     }
 
+    public Iterable<Job> findAllByLocation(String location){
+        return jobRepository.findAllByLocation(location);
+    }
 
-    public void findJobs(JobFilter jobFilter) throws JsonProcessingException {
+
+    public void fetchAllJobs(PrimarySearchDTO jobFilter) throws JsonProcessingException {
         // TODO: if local database has at least 1 result, then use local database instead first
         // TODO: make request to the API using jobFilter criteria
         // TODO: save results in the database
 
         RestTemplate restTemplate = new RestTemplate();
-        String jsonToSent = jobFilter.mapObjectToJson("dev","kielce");
+//        String jsonToSent = jobFilter.mapObjectToJson("developer","bydgoszcz");
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(HttpHeaders.CONTENT_TYPE, "application/json");
 
-        HttpEntity httpEntity = new HttpEntity(jsonToSent, httpHeaders);
+//        HttpEntity httpEntity = new HttpEntity(jsonToSent, httpHeaders);
 
-        ResponseEntity<JobContainer> response = restTemplate.exchange(
+        ResponseEntity<JobContainer> response = restTemplate.postForEntity(
                 "https://pl.jooble.org/api/ea1d5e70-b947-4a4d-9a60-eb8304182043",
-                HttpMethod.POST,
-                httpEntity,
+                jobFilter,
                 JobContainer.class);
 
         JobContainer job = response.getBody();
