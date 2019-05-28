@@ -20,12 +20,12 @@ public class Job {
     private Long id;
     private String title;
     private String location;
-    @Column(nullable = false, length = 4096)
+    @Column(length = 4096)
     private String snippet;
     private String salary;
     private String source;
     private String type;
-    @Column(nullable = false, length = 4096)
+    @Column(length = 4096)
     private String link;
     private String company;
     private String updated;
