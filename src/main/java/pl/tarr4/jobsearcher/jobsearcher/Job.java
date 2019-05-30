@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -17,7 +18,7 @@ public class Job {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long job_id;
     private String title;
     private String location;
     @Column(length = 4096)
@@ -29,6 +30,8 @@ public class Job {
     private String link;
     private String company;
     private String updated;
+    private Long id;
+    private LocalDateTime fetchDate = LocalDateTime.now();
 
     public Job() {
     }

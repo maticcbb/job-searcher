@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <link rel="stylesheet"  href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
+</head>
+<body>
+<form th:action="@{api/jobs/find}" method="get">
+    <label for="keyword">Keyword</label>:
+    <input type="text" id="keyword" name="keyword" autofocus="autofocus" /> <br />
+    <label for="location">Location</label>:
+    <input type="text" id="location" name="location" /> <br />
+    <input type="submit" value="Search" />
+</form>
+
+<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="../static/js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
+</body>
+</html>
