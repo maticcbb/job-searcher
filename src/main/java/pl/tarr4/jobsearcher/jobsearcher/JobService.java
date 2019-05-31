@@ -52,7 +52,7 @@ public class JobService {
 
     public void saveJobsFromAllPages(PrimarySearchDTO jobFilter, JobContainer jobContainer) {
         int allJobs = jobContainer.getTotalCount();
-        Integer page = 2;
+        Integer page = 1;
         if (allJobs > 20) {
             for (int i = 0; i < allJobs; i += 20) {
                 jobFilter.setPage(page.toString());
@@ -63,10 +63,11 @@ public class JobService {
         jobRepository.saveAll(getJobsFromApi(jobFilter).getJobs());
     }
 
-    public void updateJobs(PrimarySearchDTO jobFilter){
-       JobContainer jobsFromApi = getJobsFromApi(jobFilter);
-
-    }
+    // TODO : add methode to update jobs in database
+//    public void updateJobs(PrimarySearchDTO jobFilter){
+//       JobContainer jobsFromApi = getJobsFromApi(jobFilter);
+//
+//    }
 
     public JobContainer getJobsFromApi(PrimarySearchDTO jobFilter) {
 
@@ -76,7 +77,7 @@ public class JobService {
         httpHeaders.add(HttpHeaders.CONTENT_TYPE, "application/json");
 
         ResponseEntity<JobContainer> response = restTemplate.postForEntity(
-                "https://pl.jooble.org/api/ea1d5e70-b947-4a4d-9a60-eb8304182043",
+                "https://pl.jooble.org/api/35e14d2f-5f2a-45a7-aa77-1ddd67c4bf42",
                 jobFilter,
                 JobContainer.class);
 
