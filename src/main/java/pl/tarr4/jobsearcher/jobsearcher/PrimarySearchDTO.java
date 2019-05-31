@@ -9,7 +9,7 @@ public class PrimarySearchDTO {
     private String keywords;
     private String location;
     private String page = "1";
-    private final String searchMode = "3" ;
+    private final String searchMode = "1" ;
 
 
     public PrimarySearchDTO(String keywords, String location) {
