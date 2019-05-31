@@ -1,48 +1,76 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Result</title>
-    <link rel="stylesheet"  href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
 </head>
 <body>
-<form th:action="@{/jobs/find}" method="get">
-    <label for="keyword">Keyword</label>:
-    <input type="text" id="keyword" name="keyword" autofocus="autofocus" /> <br />
-    <label for="location">Location</label>:
-    <input type="text" id="location" name="location" /> <br />
-    <input type="submit" value="Search" />
-</form>
 
-<div class="accordion" id="accordionExample">
-    <div class="card">
-        <div class="card-header" id="headingOne">
-            <h2 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Collapsible Group Item #1
-                </button>
-            </h2>
-        </div>
+<div class="container py-5">
 
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-            </div>
+    <!-- For demo purpose -->
+    <div class="row text-center text-white mb-5">
+        <div class="col-lg-7 mx-auto">
+            <h1 class="display-4">Bootstrap 4 list</h1>
+            <p class="lead mb-0">Create an elegant product list using Bootstrap 4 list group</p>
+            <p class="lead">Snippet by <a href="https://bootstrapious.com/snippets" class="text-white">
+                <u>Bootstrapious</u></a>
+            </p>
         </div>
     </div>
-    <div class="card">
-        <div class="card-header" id="headingTwo">
-            <h2 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Collapsible Group Item #2
-                </button>
-            </h2>
+
+    <div class="bg-white p-5 rounded shadow">
+        <form th:action="@{/job/result}" method="get">
+    <div class="row mb-4">
+
+        <div class="form-group col-md-4">
+            <input name="keyword" id="keyword" type="text" placeholder="What job you're searching for?" class="form-control form-control-underlined">
+        </div>
+        <div class="form-group col-md-4">
+            <input name="location" id="location" type="text" placeholder="Search in location" class="form-control form-control-underlined">
+        </div>
+        <div class="form-group col-md-3">
+            <button type="submit" class="btn btn-primary rounded-pill btn-block shadow-sm">Search</button>
+        </div>
+        </form>
+    </div>
+
+    <!-- End -->
+
+    <div class="row">
+        <div th:each="job: ${allJobs}" class="col-lg-8 mx-auto">
+
+            <!-- List group-->
+            <ul class="list-group shadow">
+
+                <!-- list group item-->
+                <li class="list-group-item">
+                    <!-- Custom content-->
+                    <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                        <div class="media-body order-2 order-lg-1">
+                            <a th:href="${job.getLink()}"><h5 th:text="${job.getTitle()}" class="mt-0 font-weight-bold mb-2">No title</h5></a>
+                            <p th:text="${job.getCompany()}" class="font-italic text-muted mb-0 small">Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Suscipit fuga autem maiores necessitatibus.</p>
+                            <div class="d-flex align-items-center justify-content-between mt-1">
+                                <h6 th:text="${job.getType()}" class="font-weight-bold my-2">N\A</h6>
+                                <p th:text="${job.getLocation()}" class="font-italic text-muted mb-0 small">Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. Suscipit fuga autem maiores necessitatibus.</p>
+                            </div>
+                        </div>
+                      <!--  <img src="https://res.cloudinary.com/mhmd/image/upload/v1556485076/shoes-1_gthops.jpg"
+                             alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">-->
+                    </div>
+                    <!-- End -->
+                </li>
+                <!-- End -->
+            </ul>
+
         </div>
     </div>
 </div>
-
-
+</div>
 
 <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>

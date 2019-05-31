@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Search</title>
@@ -7,14 +7,21 @@
     <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}">
 </head>
 <body>
-<form th:action="@{api/jobs/find}" method="get">
-    <label for="keyword">Keyword</label>:
-    <input type="text" id="keyword" name="keyword" autofocus="autofocus" /> <br />
-    <label for="location">Location</label>:
-    <input type="text" id="location" name="location" /> <br />
-    <input type="submit" value="Search" />
-</form>
+<div class="bg-white p-5 rounded shadow">
+    <form th:action="@{job/result}" method="get">
+        <div class="row mb-4">
 
+            <div class="form-group col-md-4">
+                <input name="keyword" id="keyword" type="text" placeholder="What job you're searching for?" class="form-control form-control-underlined">
+            </div>
+            <div class="form-group col-md-4">
+                <input name="location" id="location" type="text" placeholder="Search in location" class="form-control form-control-underlined">
+            </div>
+            <div class="form-group col-md-3">
+                <button type="submit" class="btn btn-primary rounded-pill btn-block shadow-sm">Search</button>
+            </div>
+    </form>
+</div>
 <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
 <script src="../static/js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
