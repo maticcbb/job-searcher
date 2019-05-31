@@ -23,9 +23,8 @@ public class JobController {
     }*/
 
     @PostMapping
-    public String fetchAllJobs(@RequestParam String keywords, @RequestParam String location) throws JsonProcessingException {
+    public void fetchAllJobs(@RequestParam String keywords, @RequestParam String location) throws JsonProcessingException {
         jobService.fetchAllJobs(new PrimarySearchDTO(keywords, location));
-        return "Saved";
     }
 
 
